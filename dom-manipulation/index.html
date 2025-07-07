@@ -1,31 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dynamic Quote Generator</title>
+  <title>Dynamic Quote Generator with Sync</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    #quoteDisplay {
-      margin: 20px 0;
-      padding: 10px;
-      border: 2px solid #ccc;
-      border-radius: 5px;
-      min-height: 50px;
-    }
-    .form-section {
-      margin-top: 20px;
-    }
-    input, select, button {
-      margin: 5px;
-    }
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #notification { background: #fffae5; padding:10px; margin-bottom:10px; display:none; }
+    #quoteDisplay { margin:20px 0; padding:10px; border:2px solid #ccc; min-height:50px; }
+    .form-section, .sync-section { margin-top:20px; }
+    .conflict { background: #ffeaea; margin:10px 0; padding:10px; border:1px solid #e00; }
+    .conflict button { margin:5px; }
   </style>
 </head>
 <body>
-  <h1>Dynamic Quote Generator</h1>
+  <h1>Dynamic Quote Generator (with Sync)</h1>
+  <div id="notification"></div>
 
   <!-- Category Filter -->
   <label for="categoryFilter">Filter by Category:</label>
@@ -33,17 +23,16 @@
     <option value="all">All Categories</option>
   </select>
 
-  <!-- Display Area -->
+  <!-- Quote Display -->
   <div id="quoteDisplay">Click "Show New Quote" to begin!</div>
   <button id="newQuote">Show New Quote</button>
 
   <!-- Add Quote Form -->
   <div id="formContainer" class="form-section"></div>
 
-  <!-- JSON Export / Import -->
-  <div class="form-section">
-    <button onclick="exportToJson()">Export Quotes as JSON</button><br>
-    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+  <!-- Sync Controls -->
+  <div class="sync-section">
+    <button onclick="manualSync()">Sync Now</button>
   </div>
 
   <script src="script.js"></script>
